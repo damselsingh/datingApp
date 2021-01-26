@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block body %}
+<style>
+     body{
+        background-image: url(/static/core/images/datebg.png);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+<div class="container my-5 text-center">
+<div class="col-md-7 text-center mx-auto">
+    <div class="card">
+        <h4 class="my-2 text-center"><img src="{% static 'core/images/logo.svg' %}" width="100"></h4>
+        <h4 class="card-title text-center my-2 text-dark font-italic">Create an Account</h4>
+        <div class="card-body">
+            <form action="" method="POST" novalidate>
+                {% csrf_token %}
+                {% for forms in form %}
+                <div class="form-group">
+                   {{forms.label_tag}}
+                   {{forms}} 
+                   <h6 class="text-danger my-2">{{forms.errors|striptags}} </h6>
+                </div>
+                 {% endfor %}
+                 <h6 class="text-black my-2"> Already have an account? <a href="{% url 'login' %}">Login</a></h6>
+                 <input type="submit" value="Submit" class="btn btn-danger rounded-pill font-weight-bold">
+                 <a href="{% url 'homepage' %}" class="btn btn-warning rounded-pill font-weight-bold">Cancel</a>
+           </form>
+   </div>
+
+</div>
+</div>
+</div>
+{% endblock body %}

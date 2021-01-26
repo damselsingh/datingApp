@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+
+{% block body %}
+   {{block.super}}
+
+
+   <div class="container">
+      <div class="row">
+         <div class="col-md-6 mx-auto text-center bg-dark">
+                     <div id=demo class="carousel slide" data-ride=carousel>
+                        <ul class=carousel-indicators>
+                        <li data-target=#demo data-slide-to=0 class=active></li>
+                        <li data-target=#demo data-slide-to=1></li>
+                        <li data-target=#demo data-slide-to=2></li>
+                        </ul>
+                  
+                        <div class=carousel-inner>
+                           {% for fm in form %}
+                        <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+                        {% if fm.profileimage %}
+                        <img src="{{fm.profileimage.url}}" style="height: 90vh; object-fit: contain;" class="d-block w-100">
+                        {% else %}
+                        <img src="/static/core/images/default.png" style="height: 90vh; object-fit: cover;" class="d-block w-100">
+                        {% endif %}
+                        <div class="carousel-caption"> 
+                           <h5> <span class="badge badge-dark">{{fm.user.first_name}} {{fm.user.last_name}}</span>, <span class="badge badge-warning">{{fm.age}}</span></h5>
+                           <h5 class="badge badge-dark">{{fm.Bio}}</h5> <br>
+                           <h5 class="badge badge-warning">{{fm.Hobbies}}</h5>
+                        </div>
+                        </div>
+                        {% endfor %}
+                  
+                     
+                        </div>
+                        <a class=carousel-control-prev href=#demo data-slide=prev>
+                        <span class=carousel-control-prev-icon></span>
+                        </a>
+                        <a class=carousel-control-next href=#demo data-slide=next>
+                        <span class=carousel-control-next-icon></span>
+                        </a>
+                        </div>
+         </div>
+      </div>
+   </div>
+
+
+  
+
+  
+{% endblock body %}

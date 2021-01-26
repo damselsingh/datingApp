@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block body %}
+   {{block.super}}
+    <h1 class="text-center mt-3 font-italic">settings</h1>
+    <div class="container">
+       <div class="row">
+        <div class="col-md-6 mx-auto  mt-3">
+            {% include 'core/couple.svg' %}
+        </div>
+        <div class="col-md-6 mx-auto ml-auto text-left">
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for forms in form %}
+                <div class="form-group">
+                  <strong>{{forms.label_tag}}</strong> <br>
+                  {{forms}} 
+                  <h6 class="text-danger my-2">{{forms.errors|striptags}} </h6>
+              </div>
+                {% endfor %}
+                <input type="submit" class="btn btn-outline-danger rounded-pill font-weight-bold" value="Update">
+                <a href="{% url 'feeds' %}" class="btn btn-outline-warning rounded-pill font-weight-bold">Cancel</a>
+                <a href="{% url 'logout' %}" class="btn btn-outline-info rounded-pill font-weight-bold">logout</a>
+            </form>
+        </div>
+       </div>
+       
+        
+    </div>
+{% endblock body %}

@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block body %}
+
+<style>
+  body{
+     background-image: url(/static/core/images/datebg.png);
+     background-position: center;
+     background-repeat: no-repeat;
+     overflow: hidden;
+ }
+</style>
+
+<div class="container my-5 text-center">
+  <div class="col-md-6 text-center mx-auto mt-3">
+    <div class="card">
+      <h6 class="mt-3"><img src="{% static 'core/images/logo.svg' %}" class="d-line-block align-top" width="100"></h6>
+        <h4 class="card-subtitle mt-2 font-italic">Welcome back!</h4>
+        <h5 class="card-title my-2 text-danger">Login to Your Account</h5>
+        <div class="card-body">
+           <form action="" method="post">
+               {% csrf_token %}
+               {% if form.non_field_errors %}
+               <ul class="alert alert-danger text-danger">
+                   {% for error in form.non_field_errors %}
+                   {{ error }}
+                   {% endfor %}
+               </ul>
+               {% endif %}
+
+                    {% for forms in form %}
+                    <div class="form-group font-weight-bold">
+                      {{forms.label_tag}}
+                      {{forms}} 
+                      <h6 class="text-danger my-2">{{forms.errors|striptags}} </h6>
+                  </div>
+                    {% endfor %}
+               <h6 class="text-black"> New to MeetU? <a href="{% url 'signup' %}">Create an Account</a></h6> <br>
+               <input type="submit" class="btn btn-danger rounded-pill font-weight-bold" value="Login">
+               <a href="{% url 'homepage' %}" class="btn btn-info rounded-pill font-weight-bold">Go back</a>
+           </form>
+           <div class="text-center my-2">
+            <h6>Created by <span class="text-danger">Riya Singh</span></h6>
+        </div>
+        </div>
+    </div>
+  </div>
+    
+</div>
+{% endblock body %}

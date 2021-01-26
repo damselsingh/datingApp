@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+
+{% block body %}
+   {{block.super}}
+    <h1 class="text-center my-3 font-italic"><u>Edit your profile here!</u></h1>
+    <div class="container text-center">
+    <div class="row">
+        <div class="col-md-6 mr-auto text-left mt-3">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for forms in form %}
+            <div class="form-group">
+              <strong>{{forms.label_tag}}</strong> <br>
+              {{forms}} 
+              <h6 class="text-danger my-2">{{forms.errors|striptags}} </h6>
+          </div>
+            {% endfor %}
+            <input type="submit" class="btn btn-outline-danger rounded-pill font-weight-bold" value="Update">
+            <a href="{% url 'feeds' %}" class="btn btn-outline-warning rounded-pill font-weight-bold">Cancel</a>
+        </form>
+        </div>
+        <div class="col-md-6 mx-auto text-center mt-3">
+            {% include 'core/couple.svg' %}
+        </div>
+    </div>
+        
+    </div>
+{% endblock body %}

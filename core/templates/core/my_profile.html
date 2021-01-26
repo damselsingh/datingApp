@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %}
+
+{% block body %}
+   {{block.super}}
+    <h1 class="text-center mt-5 font-italic"><u>My Profile</u></h1>
+    {% if form2.as_p %}
+    <div class="container my-5 text-center">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form2.as_p}}
+            <input type="submit" class="btn btn-warning" value="Save">
+            <a href="{% url 'feeds' %}" class="btn btn-info">Go back</a>
+        </form>
+      </div>
+      {% else %}
+       <div class="container my-3">
+         <div class="row">
+          {% for fm in form2 %}
+           <div class="col-md-6 text-center my-2">
+            {% if fm.profileimage %}
+            <img src="{{fm.profileimage.url}}" alt="" class="w-50">
+            {% else %}
+            <img src="/static/core/images/default.png" class="w-50">
+            {% endif %}
+           </div>
+
+           <div class="col-md-6 my-2">
+            {% if fm.id %}
+            <!-- table start -->
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th scope="row"><h5><span class="badge badge-dark">Username: </span></h5></th>
+                  <td> {{fm.user.username}}</td>
+                </tr>
+                <tr>
+                  <th scope="row"><h5><span class="badge badge-dark">Name: </span></h5></th>
+                  <td> {{fm.user.first_name}} {{fm.user.last_name}}</td>
+                </tr>
+                <tr>
+                  <th scope="row"><h5><span class="badge badge-dark">Age: </span></h5></th>
+                  <td> {{fm.age}}</td>
+                </tr>
+                <tr>
+                  <th scope="row"><h5><span class="badge badge-dark">Hobbies: </span></h5></th>
+                  <td>{{fm.Hobbies}}</td>
+                </tr>
+                <tr>
+                  <th scope="row"><h5><span class="badge badge-dark">Bio: </span></h5> </th>
+                  <td>{{fm.Bio}}</td>
+                </tr>
+              </tbody>
+            </table>
+              <a href="{% url 'profiledit' fm.id %}" class="btn btn-outline-success rounded-pill font-weight-bold">Edit</a>
+            {% endif %}
+            {% endfor %}
+           </div>
+
+         </div>
+       </div>
+{% endif %}
+       
+        
+    
+{% endblock body %}

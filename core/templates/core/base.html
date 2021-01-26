@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %} {% endblock title %}
+    <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel=stylesheet href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css>
+    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css>
+    <style>
+        body{
+          padding-bottom: 100px;
+        }
+        .navbar{
+          background-color: black;
+        }
+        .navbar > a{
+          color: #F2AF7E;
+        }
+        .navbar > a:hover{
+          filter: drop-shadow(0px 5px 3px #f1c6a7);
+          animation: pulse 2s infinite;
+        }
+      </style>
+</head>
+
+
+<body>
+    
+        {% block body %}
+        {% if request.user.is_authenticated %}
+        <div class="navbar fixed-bottom">
+            <a href="{% url 'feeds' %}" class="nav-link" title="Feeds"><i class="fas fa-home fa-2x"></i>
+            <a href="{% url 'feeds' %}" class="nav-link" title="Chat"><i class="fas fa-comments fa-2x"></i></a>
+            <a href="{% url 'profile' %}" class="nav-link" title="Edit Your Profile"><i class="fas fa-user-edit fa-2x"></i></a>
+            <a href="{% url 'user-settings' %}" class="nav-link" title="Settings"><i class="fas fa-cog fa-2x"></i></a>
+          </div>
+          {% endif %}
+        {% endblock body %}
+
+
+    
+    
+
+
+<script src=https://code.jquery.com/jquery-3.3.1.slim.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js></script>
+</body>
+</html>

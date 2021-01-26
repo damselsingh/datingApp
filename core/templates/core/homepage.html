@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+
+{% block body %}
+<style>
+  body{
+        background-image: url(/static/core/images/datebg.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        overflow: hidden;
+    }
+    .navbar{
+      background-color: transparent;
+    }
+</style>
+<nav class="navbar">
+  <a class="navbar-brand mx-auto" href="#"><img src="/static/core/images/logo.svg" width="150" class="mx-auto d-line-block align-top" alt=""> </a>
+</nav>
+<div class="container-fluid">
+  <div class="my-4">
+    {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert alert-danger alert-dismissible fade show" {% endif %}>
+     <strong>{{message}}</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+  <div class="row">
+    <div class="col mx-auto text-center" style="margin-top: 150px;">
+        <a href="{% url 'signup' %}" class="btn bg-light my-3 btn-lg rounded-pill font-weight-bold font-italic">CREATE ACCOUNT</a>  <br>
+        <a href="{% url 'login' %}" class="btn btn-outline-light my-3 btn-lg rounded-pill font-weight-bold font-italic">LOGIN</a>
+    </div>
+  </div>
+ 
+
+  
+</div>
+
+
+{% endblock body %}
